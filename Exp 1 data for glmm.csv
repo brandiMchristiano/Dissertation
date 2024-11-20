@@ -1,0 +1,57 @@
+BatName,Sex,Reproductive State,Weight,Length,Location,Test,Outcome
+Booby,F,NR,49,62.8,Plantation,Personal,NA
+Booby,F,NR,49,62.8,Plantation,demonstrator,NA
+Cedar,F,NR,42,59.8,Laguna,demonstrator,1
+Cedar,F,NR,42,59.8,Laguna,personal,0
+Colibri,M,T,44,58.2,Plantation,personal,NA
+Colibri,M,T,44,58.2,Plantation,demonstrator,NA
+Cooper,M,T,52,62.2,El Charco,demonstrator,NA
+Cooper,M,T,52,62.2,El Charco,personal,1
+Coot,F,T,46,56.4,Plantation,demonstrator,1
+Coot,F,T,46,56.4,Plantation,personal,1
+Crow,M,NR,44,60.5,Juan Grande,personal,NA
+Finch,M,T,52,64.2,Laguna,personal,NA
+Finch,M,T,52,64.2,Laguna,demonstrator,NA
+Flacon,M,NR,46,62.4,El Charco,demonstrator,1
+Flacon,M,NR,46,62.4,El Charco,personal,1
+Flamingo,F,NR,50,60.7,Juan Grande,demonstrator,1
+Hoopoe,M,NR,46,61.3,Laguna,personal,1
+Hoopoe,M,NR,46,61.3,Laguna,demonstrator,1
+Jabiru,F,NR,52,62.2,El Charco,personal,NA
+Jabiru,F,NR,52,62.2,El Charco,demonstrator,NA
+Jacana,M,T,48,63.1,Laguna,personal,1
+Jacana,M,T,48,63.1,Laguna,demonstrator,1
+Jay,M,T,47,61.5,Laguna,demonstrator,0
+Jay,M,T,47,61.5,Laguna,personal,0
+Kestrel,M,NR,43,63,Laguna,personal,NA
+Kestrel,M,NR,43,63,Laguna,demonstrator,NA
+Killdeer,F,NR,36,63,El Charco,personal,1
+Killdeer,F,NR,36,63,El Charco,demonstrator,0
+Kiwi,F,NR,46.2,61.5,Juan Grande,personal,NA
+Pecker,M,T,52,63,Plantation,personal,NA
+Pecker,M,T,52,63,Plantation,demonstrator,0
+Pelican,M,NR,48,62,Juan Grande,demonstrator,NA
+Penguin,M,T,48,63,Plantation,demonstrator,0
+Penguin,M,T,48,63,Plantation,personal,1
+Phesant,M,T,42,60,Laguna,personal,NA
+Phesant,M,T,42,60,Laguna,demonstrator,0
+Puffin,F,NR,46,61.3,Laguna,demonstrator,1
+Puffin,F,NR,46,61.3,Laguna,personal,0
+Sapphire,F,NR,42,60.1,Laguna,demonstrator,NA
+Sapphire,F,NR,42,60.1,Laguna,personal,0
+Sawinson,F,NR,47,65,El Charco,personal,NA
+Sawinson,F,NR,47,65,El Charco,demonstrator,NA
+Screamer,M,NR,50,61.5,Plantation,demonstrator,0
+Screamer,M,NR,50,61.5,Plantation,personal,0
+Scrub,M,NR,50,65.9,El Charco,demonstrator,1
+Scrub,M,NR,50,65.9,El Charco,personal,1
+Shags,F,NR,39,57.6,Plantation,demonstrator,NA
+Shags,F,NR,39,57.6,Plantation,personal,NA
+Skimmer,M,T,46,58,El Charco,demonstrator,NA
+Skimmer,M,T,46,58,El Charco,personal,1
+Stork,M,NR,46,60,Laguna,demonstrator,1
+Stork,M,NR,46,60,Laguna,personal,1
+Tuki,F,NR,50,63.2,El Charco,personal,1
+Tuki,F,NR,50,63.2,El Charco,demonstrator,1
+Warbler,M,T,46,61.3,Plantation,personal,1
+Warbler,M,T,46,61.3,Plantation,demonstrator,1
