@@ -1,0 +1,287 @@
+---
+title: "Chapter 3 Analysis - Final"
+date: "November 20, 2024"
+output: html_notebook
+---
+```{r}
+# Libraries
+library(ggplot2)
+library (lme4)
+library(lmerTest)
+library(dplyr)
+```
+
+
+```{r}
+# ----- EXPERIMENT #1  - Personal and Social Information Use --------
+setwd("C:/Users/15707/Desktop/Research/Dissertation, Committee Meeting, Quals/Dissertation/Chapter 3/Data Analysis Update")
+E1data <- read.csv("Exp1data.csv") 
+E1data
+# In the Personal and Demonstrator Tests, an outcome of 0 means they chose the unfamiliar option they had no prior experience with. An outcome of 1 means they chose the flavor that they had experience with 
+# In the Conflicting Information Tests, an outcome of 0 means they chose the personal flavor and an outcome of 1 means they chose the demonstrator flavor 
+
+# -- Sort by test type and clean --
+personal<-subset(E1data,Test== "personal")
+personal
+personal_cleaned <- na.omit(personal)
+personal_cleaned
+
+demonstrator<-subset(E1data,Test== "demonstrator")
+demonstrator
+demonstrator_cleaned <- na.omit(demonstrator)
+demonstrator_cleaned
+
+conflicting<-subset(E1data,Test== "conflicting")
+conflicting
+conflicting_cleaned <- na.omit(conflicting)
+conflicting_cleaned
+```
+
+```{r}
+# -- Personal Information Test --
+
+# - Exact binomial test -
+outcomePersonal<-sum(personal_cleaned$Outcome)
+outcomePersonal
+resultPersonal <-binom.test(outcomePersonal, length(personal_cleaned$Outcome), p=0.5, alternative = "greater")
+resultPersonal
+
+# - Error Bars - 
+
+size <- 17  # Number of trials
+prob <- 12 / 17  # Probability of success
+# Standard error for binomial distribution
+successes_se <- sqrt(size * prob * (1 - prob))
+failures_se <- sqrt(size * (1 - prob) * prob)
+data <- data.frame(
+  category = c("Success", "Failure"),
+  count = c(12, 5),
+  se = c(successes_se, failures_se)
+)
+# Print the exact values of the error bars 
+data$lower <- data$count - data$se 
+data$upper <- data$count + data$se
+print(data)
+
+
+# -- By Sex -- 
+# - Males -
+personal.male.outcome1<- 9
+personal.male.outcome0 <- 2
+personal.male.result <-binom.test(9, 11, p=0.5, alternative = "greater")
+personal.male.result
+
+size <- 11  # Number of trials
+prob <- 9 / 11  # Probability of success
+# Standard error for binomial distribution
+successes_se <- sqrt(size * prob * (1 - prob))
+failures_se <- sqrt(size * (1 - prob) * prob)
+data <- data.frame(
+  category = c("Success", "Failure"),
+  count = c(9, 2),
+  se = c(successes_se, failures_se)
+)
+# Print the exact values of the error bars 
+data$lower <- data$count - data$se 
+data$upper <- data$count + data$se
+print(data)
+```
+
+```{r}
+# -- Demonstrator Information Test --
+outcomeDemonstrator <-sum(demonstrator_cleaned$Outcome)
+outcomeDemonstrator
+resultDemonstrator<-binom.test(outcomeDemonstrator, length(demonstrator_cleaned$Outcome), p=0.5, alternative = "greater")
+resultDemonstrator
+
+size <- 17  # Number of trials
+prob <- 11 / 17  # Probability of success
+# Standard error for binomial distribution
+successes_se <- sqrt(size * prob * (1 - prob))
+failures_se <- sqrt(size * (1 - prob) * prob)
+data <- data.frame(
+  category = c("Success", "Failure"),
+  count = c(11, 6),
+  se = c(successes_se, failures_se)
+)
+# Print the exact values of the error bars 
+data$lower <- data$count - data$se 
+data$upper <- data$count + data$se
+print(data)
+
+
+# -- By Sex -- 
+# - Males -
+demonstrator.male.outcome1 <- 6
+demonstrator.male.outcome0 <- 5
+demonstrator.male.result <-binom.test(6, 11, p=0.5, alternative = "greater")
+demonstrator.male.result
+
+size <- 11  # Number of trials
+prob <- 6 / 11  # Probability of success
+# Standard error for binomial distribution
+successes_se <- sqrt(size * prob * (1 - prob))
+failures_se <- sqrt(size * (1 - prob) * prob)
+data <- data.frame(
+  category = c("Success", "Failure"),
+  count = c(6, 5),
+  se = c(successes_se, failures_se)
+)
+data$lower <- data$count - data$se 
+data$upper <- data$count + data$se
+print(data)
+
+```
+
+```{r}
+# -- Conflicting Information Test--
+outcomeConflicting <-sum(conflicting_cleaned$Outcome)
+outcomeConflicting
+resultConflicting<-binom.test(outcomeConflicting, length(conflicting_cleaned$Outcome), p=0.5, alternative = "two.sided")
+resultConflicting
+
+successes_condition1 <- 12
+trials_condition1 <- 23
+successes_condition2 <- 11
+trials_condition2 <- 23
+
+size <- 23  # Number of trials
+prob <- 12 / 23  # Probability of success
+# Standard error for binomial distribution
+successes_se <- sqrt(size * prob * (1 - prob))
+failures_se <- sqrt(size * (1 - prob) * prob)
+data <- data.frame(
+  category = c("Success", "Failure"),
+  count = c(12, 11),
+  se = c(successes_se, failures_se)
+)
+# Print the exact values of the error bars 
+data$lower <- data$count - data$se 
+data$upper <- data$count + data$se
+print(data)
+
+
+# -- By Sex -- 
+# - Males -
+conflicting.male.outcome1 <- 7
+conflicting.male.outcome0 <- 6
+conflicting.male.result <-binom.test(7, 13, p=0.5, alternative = "two.sided")
+conflicting.male.result
+
+size <- 13  # Number of trials
+prob <- 7 / 13  # Probability of success
+# Standard error for binomial distribution
+successes_se <- sqrt(size * prob * (1 - prob))
+failures_se <- sqrt(size * (1 - prob) * prob)
+data <- data.frame(
+  category = c("Success", "Failure"),
+  count = c(7, 6),
+  se = c(successes_se, failures_se)
+)
+# Print the exact values of the error bars 
+data$lower <- data$count - data$se 
+data$upper <- data$count + data$se
+print(data)
+
+
+# - Females - 
+conflicting.female.outcome1 <- 4
+conflicting.female.outcome0 <- 6
+conflicting.female.result <-binom.test(4, 10, p=0.5, alternative = "two.sided")
+conflicting.female.result
+
+size <- 10  # Number of trials
+prob <- 4 / 10  # Probability of success
+# Standard error for binomial distribution
+successes_se <- sqrt(size * prob * (1 - prob))
+failures_se <- sqrt(size * (1 - prob) * prob)
+data <- data.frame(
+  category = c("Success", "Failure"),
+  count = c(4, 6),
+  se = c(successes_se, failures_se)
+)
+# Print the exact values of the error bars 
+data$lower <- data$count - data$se 
+data$upper <- data$count + data$se
+print(data)
+```
+
+```{r}
+# --- Experiment 1 Part 2: Familiar v Unfamiliar ---
+# UPDATED  - Need to make a new datasheet with all of the information needed for this in it
+# Familiar v Unfamiliar glmm test 
+
+E1dataFU <- read.csv("Exp 1 data for glmm.csv") 
+E1dataFU
+# --- GLMM ---
+E1dataFU_cleaned <-na.omit(E1dataFU)
+summary(E1dataFU_cleaned)
+
+model1 <- glmer(Outcome ~ Sex  + Location + Reproductive.State + Weight + Length + (1|BatName), data = E1dataFU_cleaned, family=binomial)
+model1
+summary(model1) # Nothing is significant 
+# "We combined data from the Personal and Demonstrator tests to ask Question 4) Do bats prefer food that is familiar (through either social or personal information) over unfamiliar foods? We then performed a generalized mixed effect model that tested if their choice could be predicted by sex, capture location, reproductive state, weight or length. Since some individuals completed both the Personal and Demonstrator test, we included individual Bat ID as a random effect. "
+
+```
+
+
+
+```{r}
+#----- EXPERIMENT #2 - Group Size -----
+
+setwd("C:/Users/15707/Desktop/Research/Dissertation, Committee Meeting, Quals/Dissertation/Chapter 3/Data Analysis Update")
+E2data <- read.csv("Exp2data.csv")
+E2data
+
+# --- Binomial Tests ---
+E2data_cleaned <- na.omit(E2data)
+E2data_cleaned
+
+group.outcome<-sum(E2data_cleaned$Outcome)
+group.outcome
+group.result<-binom.test(group.outcome, length(E2data_cleaned$Outcome), p=0.5, alternative = "two.sided")
+group.result
+
+size <- 14  # Number of trials
+prob <- 11 / 14  # Probability of success
+# Standard error for binomial distribution
+successes_se <- sqrt(size * prob * (1 - prob))
+failures_se <- sqrt(size * (1 - prob) * prob)
+data <- data.frame(
+  category = c("Success", "Failure"),
+  count = c(11, 3),
+  se = c(successes_se, failures_se)
+)
+# Print the exact values of the error bars 
+data$lower <- data$count - data$se 
+data$upper <- data$count + data$se
+print(data)
+
+# -- By Sex -- 
+# - Male - 
+male_data <- E2data_cleaned %>%
+  filter(Sex == "M")
+
+male.outcome1<-sum(male_data$Outcome)
+male.outcome1
+male.result<-binom.test(male.outcome1, length(male_data$Outcome), p=0.5, alternative = "two.sided")
+male.result
+
+size <- 9  # Number of trials
+prob <- 1 / 9  # Probability of success
+# Standard error for binomial distribution
+successes_se <- sqrt(size * prob * (1 - prob))
+failures_se <- sqrt(size * (1 - prob) * prob)
+data <- data.frame(
+  category = c("Success", "Failure"),
+  count = c(1, 8),
+  se = c(successes_se, failures_se)
+)
+# Print the exact values of the error bars 
+data$lower <- data$count - data$se 
+data$upper <- data$count + data$se
+print(data)
+
+```
+
+
